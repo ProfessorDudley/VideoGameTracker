@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6SPJqUKp5BoSzxzTrieoKeqkERhjy5RIRXuBo9L1PX5ZsQ8OnYMYML+FxybNe1awpgb0/KCh/gabX5Bbt7meqw==",
+  "dgSpecHash": "NQ/ogr37WB0iubmQR8ugSuw24HEdMC5kZenjvKwa6mPKpAXgIliIHLTsA0mvA0Vpl01+0lCubBugy3IKlC3Kpw==",
   "success": true,
-  "projectFilePath": "c:\\Users\\samdicken\\csharp\\VideoGameTracker\\VideoGameTracker.csproj",
+  "projectFilePath": "C:\\Users\\samdicken\\csharp\\VideoGameTracker\\VideoGameTracker.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
