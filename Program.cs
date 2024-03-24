@@ -6,7 +6,24 @@ class VideoGameTracker
     {
 
       Console.WriteLine("Welcome to the Video Game Tracker!");
-      GameLibrary.LoadGames("../../../data.json");
+
+      // Create a path to the library.
+      string path = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/videogametracker/").FullName;
+      string libPath;
+      if (!File.Exists(path + "data.json"))
+      {
+        using (var stream = File.Create(path + "data.json"))
+        {
+          libPath = stream.Name;
+        }
+      } else
+      {
+        libPath = path + "data.json";
+      }
+      
+      
+      // Load library
+      GameLibrary.LoadGames(libPath);
       
       while (true)
       {
@@ -19,11 +36,11 @@ class VideoGameTracker
             GameLibrary.AddGame();
             break;
           case "save":
-            GameLibrary.WriteOut();
+            GameLibrary.WriteOut(libPath);
             break;
           case "load":
             // Loads library from disk
-            GameLibrary.LoadGames("../../../data.json");
+            GameLibrary.LoadGames(libPath);
             foreach (VideoGame game in GameLibrary.Library)
             {
               Console.WriteLine($"Loaded {game.Alias} for {game.Platform}.");

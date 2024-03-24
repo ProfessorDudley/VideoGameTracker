@@ -11,14 +11,24 @@ namespace GameLibraryTracker
     {
       Console.Write("Loading games from disk... ");
       string jsonData = File.ReadAllText(path);
-      List<VideoGame>? parsedList = JsonSerializer.Deserialize<List<VideoGame>>(jsonData); // the ? after the type idicates that the value can be null in a situation where there is no data read from the JSON Deserializer.
+      List<VideoGame>? parsedList;
+      try
+      {
+        // the ? after the type idicates that the value can be null in a situation where there is no data read from the JSON Deserializer.
+        parsedList = JsonSerializer.Deserialize<List<VideoGame>>(jsonData);
+      }
+      catch (JsonException)
+      {
+        parsedList = [];
+      }
+      
       Library = parsedList ?? []; // returns parsedList if not null, otherwise a new empty List<VideoGame> collection.
       Console.WriteLine("done!");
     }
-    public static void WriteOut()
+    public static void WriteOut(string path)
     {
       string json = JsonSerializer.Serialize(Library);
-      File.WriteAllText("../../../data.json", json);
+      File.WriteAllText(path, json);
     }
     public static void AddGame()
     {
