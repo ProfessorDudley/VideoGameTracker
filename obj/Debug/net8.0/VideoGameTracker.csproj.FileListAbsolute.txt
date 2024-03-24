@@ -26,3 +26,4 @@ c:\Users\samdicken\csharp\VideoGameTracker\obj\Debug\net8.0\refint\VideoGameTrac
 c:\Users\samdicken\csharp\VideoGameTracker\obj\Debug\net8.0\VideoGameTracker.pdb
 c:\Users\samdicken\csharp\VideoGameTracker\obj\Debug\net8.0\VideoGameTracker.genruntimeconfig.cache
 c:\Users\samdicken\csharp\VideoGameTracker\obj\Debug\net8.0\ref\VideoGameTracker.dll
+c:\Users\samdicken\csharp\VideoGameTracker\obj\Debug\net8.0\VideoGameTracker.sourcelink.json

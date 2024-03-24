@@ -25,8 +25,7 @@ class VideoGameTracker
         new VideoGame("Mario Kart 8", "15/01/2020", "Nintendo Switch"),  
       ];
 
-      string json = JsonSerializer.Serialize(gameLibrary);
-      File.WriteAllText("./library.json", json);
+      WriteJson(gameLibrary);
       // List<VideoGame> gameLibrary = ImportJson("library.json");
       // foreach (VideoGame game in gameLibrary)
       // {
@@ -40,5 +39,11 @@ class VideoGameTracker
       string jsonData = File.ReadAllText(path);
       List<VideoGame> ?parsedList = JsonSerializer.Deserialize<List<VideoGame>>(jsonData); // the ? before the variable name idicates that the value can be null in the instance there is no data read from the JSON Deserializer.
       return parsedList ?? []; // returns parsedList if not null, otherwise a new empty List<VideoGame> collection.
+    }
+
+    static void WriteJson(List<VideoGame> library)
+    {
+      string json = JsonSerializer.Serialize(library);
+      File.WriteAllText("../../../data.json", json);
     }
   }
