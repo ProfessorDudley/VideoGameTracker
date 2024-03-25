@@ -27,38 +27,44 @@ class VideoGameTracker
       
       while (true)
       {
-        string? command = (Console.ReadLine() ?? string.Empty).ToLower();
+        Console.Write(">> ");
+        string command = (Console.ReadLine() ?? string.Empty).ToLower();
         if (command == "exit") break; // allows the program to exit.
         // all other instructions are processed:
         switch (command)
         {
-          case "add":
+          case "add": // Adds a game to the library.
             GameLibrary.AddGame();
             break;
-          case "save":
+          case "save": // Saves game library to list.
             GameLibrary.WriteOut(libPath);
+            Console.WriteLine("Save complete!");
             break;
-          case "load":
-            // Loads library from disk
+          case "load": // Loads library from disk
             GameLibrary.LoadGames(libPath);
             foreach (VideoGame game in GameLibrary.Library)
             {
               Console.WriteLine($"Loaded {game.Alias} for {game.Platform}.");
             }
             break;
-          case "count":
+          case "list": // Lists all games in library.
+              foreach (VideoGame game in GameLibrary.Library)
+              {
+                Console.WriteLine(game.Alias);
+              }
+            break;            
+          case "count": // Outputs the number of games in the library.
             Console.WriteLine($"{GameLibrary.Library.Count} games in library");
             break;
           case "help":
-            // continue;
+            // continue to default
           default:
             // exits switch statement if no command is matched.
-            Console.WriteLine("Command not found.");
             Console.WriteLine("Command List:");
             Console.WriteLine("help:    Show this help screen.");
             Console.WriteLine("add:     Adds a game to the library. Does not save to disk.");
             Console.WriteLine("load:    Loads library from disk.");
-            Console.WriteLine("Save:    Saves library to disk");
+            Console.WriteLine("save:    Saves library to disk");
             Console.WriteLine("exit:    Exits the program.");
             break;
         }
@@ -67,24 +73,3 @@ class VideoGameTracker
       
     }
   }
-
-
-  // List<VideoGame> gameLibrary =
-      // [
-      //   new VideoGame("Persona 5 Royal", "15/01/2019", "Steam"),
-      //   new VideoGame("Yakuza Kiwami", "15/01/2019", "Steam", "Yakuza 1"),
-      //   new VideoGame("Persona 4 Golden", "15/01/2019", "Steam"),
-      //   new VideoGame("Dark Souls: Remastered", "15/01/2018", "Steam", "Dark Souls 1"),
-      //   new VideoGame("Civilization 5", "15/01/2020", "Steam"),
-      //   new VideoGame("Dragons Dogma", "15/01/2020", "Steam", "Dragons Dogma 1"),
-      //   new VideoGame("Dragons Dogma 2", "15/01/2020", "Steam"),
-      //   new VideoGame("Final Fantasy 14", "15/01/2020", "Steam"),
-      //   new VideoGame("Eiyuden Chronicles", "15/01/2020", "Xbox"),
-      //   new VideoGame("Hi-Fi Rush", "15/01/2020", "Xbox"),
-      //   new VideoGame("Palworld", "15/01/2020", "Xbox"),
-      //   new VideoGame("Dead Space Remake", "15/01/2023", "Xbox"),
-      //   new VideoGame("The Legend of Zelda: Breath of the Wild", "15/01/2020", "Nintendo Switch"),
-      //   new VideoGame("The Legend of Zelda: Tears of the Kingdom", "15/01/2020", "Nintendo Switch"),
-      //   new VideoGame("New Super Mario Bros: Wonder", "15/01/2020", "Nintendo Switch"),
-      //   new VideoGame("Mario Kart 8", "15/01/2020", "Nintendo Switch"),  
-      // ];

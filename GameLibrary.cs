@@ -70,7 +70,7 @@ namespace GameLibraryTracker
   
   class VideoGame
   {
-    public string Title { get; private set; }
+    public string Title { get; private set;}
     public string Alias { get; private set; }
     public string DatePurchased { get; private set; }
     public bool Completed { get; private set; }
