@@ -30,8 +30,9 @@ class VideoGameTracker
         Console.Write(">> ");
         string command = (Console.ReadLine() ?? string.Empty).ToLower();
         if (command == "exit") break; // allows the program to exit.
+        string? filter;
         // all other instructions are processed:
-        switch (command)
+        switch (command.Split(" ")[0])
         {
           case "add": // Adds a game to the library.
             GameLibrary.AddGame();
@@ -54,11 +55,29 @@ class VideoGameTracker
               }
             break;
           case "filter":
-            Console.Write("Filter by platform: ");
-            string? filter = Console.ReadLine();
+            try
+            {
+              filter = command.Split(" ")[1];
+            } catch (IndexOutOfRangeException)
+            {
+              Console.WriteLine("Error: Unable to parse command.");
+              Console.WriteLine("Usage: 'filter {platform}'");
+              break;
+            }
             GameLibrary.ListGames(filter);
             break;
           case "remove":
+            try
+            {
+              filter = command.Split(" ")[1];
+            } catch (IndexOutOfRangeException)
+            {
+              Console.WriteLine("Error: Unable to parse command.");
+              Console.WriteLine("Usage: 'remove {game}'");
+              break;
+            }
+            GameLibrary.RemoveGame(filter);
+            break;
                         
           case "count": // Outputs the number of games in the library.
             Console.WriteLine($"{GameLibrary.Library.Count} games in library");
@@ -70,6 +89,7 @@ class VideoGameTracker
             Console.WriteLine("Command List:");
             Console.WriteLine("help:    Show this help screen.");
             Console.WriteLine("add:     Adds a game to the library. Does not save to disk.");
+            Console.WriteLine("filter:  Filters the library for a given platform.");
             Console.WriteLine("load:    Loads library from disk.");
             Console.WriteLine("save:    Saves library to disk");
             Console.WriteLine("exit:    Exits the program.");

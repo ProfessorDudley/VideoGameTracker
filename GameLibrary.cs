@@ -66,11 +66,23 @@ namespace GameLibraryTracker
 
       Console.WriteLine($"{alias} added to library on {datePurchased} for {platform}.");
     }
-    public static void ListGames(string? platform)
+    public static void ListGames(string platform)
     {
       List<VideoGame> games = Library.FindAll(g => string.Equals(g.Platform, platform, StringComparison.OrdinalIgnoreCase));
       if (games.Count == 0) Console.WriteLine($"No games for {platform}");
       foreach (VideoGame game in games) Console.WriteLine($"{game.Title} for {game.Platform}");
+    }
+    public static void RemoveGame(string game)
+    {
+      VideoGame? target = Library.Find(g => string.Equals(g.Title, game, StringComparison.OrdinalIgnoreCase));
+      if (target != null)
+      {
+        Console.WriteLine($"Removed {target.Title} from the library");
+        Library.Remove(target);
+      } else
+      {
+        Console.WriteLine("Unable to remove {game} from library");
+      }
     }
   }
   
