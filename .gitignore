@@ -1,4 +1,8 @@
-bin/*
-obj/*
+# Build Folders
+obj
+bin
+
+
 .sln
 .fake
+.vs/

@@ -52,7 +52,14 @@ class VideoGameTracker
               {
                 Console.WriteLine(game.Alias);
               }
-            break;            
+            break;
+          case "filter":
+            Console.Write("Filter by platform: ");
+            string? filter = Console.ReadLine();
+            GameLibrary.ListGames(filter);
+            break;
+          case "remove":
+                        
           case "count": // Outputs the number of games in the library.
             Console.WriteLine($"{GameLibrary.Library.Count} games in library");
             break;

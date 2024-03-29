@@ -66,6 +66,12 @@ namespace GameLibraryTracker
 
       Console.WriteLine($"{alias} added to library on {datePurchased} for {platform}.");
     }
+    public static void ListGames(string? platform)
+    {
+      List<VideoGame> games = Library.FindAll(g => string.Equals(g.Platform, platform, StringComparison.OrdinalIgnoreCase));
+      if (games.Count == 0) Console.WriteLine($"No games for {platform}");
+      foreach (VideoGame game in games) Console.WriteLine($"{game.Title} for {game.Platform}");
+    }
   }
   
   class VideoGame
