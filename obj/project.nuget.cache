@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Df60pK4/3SQ=",
+  "dgSpecHash": "LbUPJ7ElB/4=",
   "success": true,
-  "projectFilePath": "A:\\Source\\VideoGameTracker\\VideoGameTracker.csproj",
+  "projectFilePath": "a:\\Source\\VideoGameTracker\\VideoGameTracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\samdicken\\.nuget\\packages\\messagepack\\1.7.0\\messagepack.1.7.0.nupkg.sha512",
     "C:\\Users\\samdicken\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

@@ -42,3 +42,6 @@ a:\Source\VideoGameTracker\obj\Debug\net8.0\refint\VideoGameTracker.dll
 a:\Source\VideoGameTracker\obj\Debug\net8.0\VideoGameTracker.pdb
 a:\Source\VideoGameTracker\obj\Debug\net8.0\VideoGameTracker.genruntimeconfig.cache
 a:\Source\VideoGameTracker\obj\Debug\net8.0\ref\VideoGameTracker.dll
+a:\Source\VideoGameTracker\bin\Debug\net8.0\MessagePack.dll
+a:\Source\VideoGameTracker\obj\Debug\net8.0\VideoGameTracker.csproj.AssemblyReference.cache
+a:\Source\VideoGameTracker\obj\Debug\net8.0\VideoGam.61BDD21E.Up2Date

@@ -1,35 +1,44 @@
 using System.Text.Json;
+using MessagePack;
 
 namespace GameLibraryTracker
 {
   static class GameLibrary
   {
-    public static List<VideoGame> Library { get; private set; } = [];
+    public static List<VideoGame> Library { get; private set; } = 
+    [
+      // new VideoGame("The Legend of Zelda: Breath of the Wild", "03/03/2017", "Nintendo Switch"),
+      // new VideoGame("God of War", "04/20/2018", "PlayStation 4"),
+      // new VideoGame("Halo Infinite", "12/08/2021", "Xbox Series X"),
+      // new VideoGame("Cyberpunk 2077", "12/10/2020", "PC"),
+    ];
     
     // Methods
-    public static void LoadGames(string path)
+    public static void Load(string path)
     {
       Console.Write("Loading games from disk... ");
-      string jsonData = File.ReadAllText(path);
-      List<VideoGame>? parsedList;
-      try
-      {
-        // the ? after the type idicates that the value can be null in a situation where there is no data read from the JSON Deserializer.
-        parsedList = JsonSerializer.Deserialize<List<VideoGame>>(jsonData);
-      }
-      catch (JsonException)
-      {
-        parsedList = [];
-      }
       
-      Library = parsedList ?? []; // returns parsedList if not null, otherwise a new empty List<VideoGame> collection.
+      byte[] packed = File.ReadAllBytes(path + "data.dat");
+
+      Library = LZ4MessagePackSerializer.Deserialize<List<VideoGame>>(packed);
       Console.WriteLine("done!");
     }
-    public static void WriteOut(string path)
+
+    public static void Save(string path)
     {
-      string json = JsonSerializer.Serialize(Library);
-      File.WriteAllText(path, json);
+      Console.Write("Saving games to disk... ");
+
+      // Save data using json. Human Readable.
+      // string json = JsonSerializer.Serialize(Library);
+      // File.WriteAllText(path + "data.json", json);
+
+      // Save data using MessagePack. Binary.
+      byte[] packed = LZ4MessagePackSerializer.Serialize<List<VideoGame>>(Library);
+      File.WriteAllBytes(path + "data.dat", packed);
+
+      Console.WriteLine("done!");
     }
+
     public static void AddGame()
     {
       // Set Title
@@ -62,16 +71,18 @@ namespace GameLibraryTracker
       string? alias = Console.ReadLine() ?? string.Empty;
       if (alias == string.Empty) alias = title;
 
-      Library.Add(new(title, datePurchased, platform, alias));
+      Library.Add(new(title, datePurchased, platform, false, alias));
 
       Console.WriteLine($"{alias} added to library on {datePurchased} for {platform}.");
     }
+
     public static void ListGames(string platform)
     {
       List<VideoGame> games = Library.FindAll(g => string.Equals(g.Platform, platform, StringComparison.OrdinalIgnoreCase));
       if (games.Count == 0) Console.WriteLine($"No games for {platform}");
       foreach (VideoGame game in games) Console.WriteLine($"{game.Title} for {game.Platform}");
     }
+
     public static void RemoveGame(string game)
     {
       VideoGame? target = Library.Find(g => string.Equals(g.Title, game, StringComparison.OrdinalIgnoreCase));
@@ -84,39 +95,5 @@ namespace GameLibraryTracker
         Console.WriteLine("Unable to remove {game} from library");
       }
     }
-  }
-  
-  class VideoGame
-  {
-    public string Title { get; private set;}
-    public string Alias { get; private set; }
-    public string DatePurchased { get; private set; }
-    public bool Completed { get; private set; }
-    public string Platform { get; private set; }
-
-    /// <summary>
-    /// Video Game Object
-    /// </summary>
-    /// <param name="title">Game title</param>
-    /// <param name="datePurchased">Date game was purchased</param>
-    /// <param name="platform">Platform game is available on (not the vendor the game was purchased from)</param>
-    /// <param name="alias">An alternative title. Used for sorting.</param>
-    public VideoGame(string title, string datePurchased, string platform, string? alias = null)
-    {
-      Title = title;
-      Alias = alias ?? title; // Coalese operator. Returns left result if not null, otherwise right result.
-      DatePurchased = datePurchased;
-      Completed = false;
-      Platform = platform;
-
-      // Console.WriteLine($"{Title} --> {Alias}");
-    }
-
-    /// <summary>
-    /// Sets an alias for this game. Alias' are used for sorting.
-    /// </summary>
-    /// <param name="alias"></param>
-    public void SetAlias(string alias) => Alias = alias; // Single line function.
-    public void MarkCompleted() => Completed = true; // Single line function.
   }
 }

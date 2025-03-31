@@ -1,10 +1,18 @@
-class VideoGame
+using MessagePack;
+
+[MessagePackObject]
+public class VideoGame
   {
+    [Key(0)]
     public string Title { get; private set;}
-    public string Alias { get; private set; }
+    [Key(1)]
     public string DatePurchased { get; private set; }
-    public bool Completed { get; private set; }
+    [Key(2)]
     public string Platform { get; private set; }
+    [Key(3)]
+    public bool Completed { get; private set; }
+    [Key(4)]
+    public string Alias { get; private set; }
 
     /// <summary>
     /// Video Game Object
@@ -13,12 +21,12 @@ class VideoGame
     /// <param name="datePurchased">Date game was purchased</param>
     /// <param name="platform">Platform game is available on (not the vendor the game was purchased from)</param>
     /// <param name="alias">An alternative title. Used for sorting.</param>
-    public VideoGame(string title, string datePurchased, string platform, string? alias = null)
+    public VideoGame(string title, string datePurchased, string platform, bool completed = false, string? alias = null)
     {
       Title = title;
       Alias = alias ?? title; // Coalese operator. Returns left result if not null, otherwise right result.
       DatePurchased = datePurchased;
-      Completed = false;
+      Completed = completed;
       Platform = platform;
 
       // Console.WriteLine($"{Title} --> {Alias}");
