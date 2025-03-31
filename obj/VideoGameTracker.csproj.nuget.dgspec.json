@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\samdicken\\csharp\\VideoGameTracker\\VideoGameTracker.csproj": {}
+    "A:\\Source\\VideoGameTracker\\VideoGameTracker.csproj": {}
   },
   "projects": {
-    "c:\\Users\\samdicken\\csharp\\VideoGameTracker\\VideoGameTracker.csproj": {
+    "A:\\Source\\VideoGameTracker\\VideoGameTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\samdicken\\csharp\\VideoGameTracker\\VideoGameTracker.csproj",
+        "projectUniqueName": "A:\\Source\\VideoGameTracker\\VideoGameTracker.csproj",
         "projectName": "VideoGameTracker",
-        "projectPath": "c:\\Users\\samdicken\\csharp\\VideoGameTracker\\VideoGameTracker.csproj",
+        "projectPath": "A:\\Source\\VideoGameTracker\\VideoGameTracker.csproj",
         "packagesPath": "C:\\Users\\samdicken\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\samdicken\\csharp\\VideoGameTracker\\obj\\",
+        "outputPath": "A:\\Source\\VideoGameTracker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,11 +43,18 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "MessagePack": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -64,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
